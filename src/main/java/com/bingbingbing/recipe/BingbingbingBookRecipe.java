@@ -1,18 +1,18 @@
 package com.bingbingbing.recipe;
 
 import com.bingbingbing.registry.ModEnchantments;
+import com.bingbingbing.registry.ModRecipes;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.inventory.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CustomRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.enchantment.EnchantmentInstance;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.inventory.CraftingContainer;
 
 /**
  * Crafts a real vanilla enchanted book that already carries the bingbingbing enchantment.
@@ -35,13 +35,14 @@ public class BingbingbingBookRecipe extends CustomRecipe {
     /** The book this recipe hands out; also used to seed the creative tab. */
     public static ItemStack createBook() {
         ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
-        EnchantmentHelper.addEnchantment(book, ModEnchantments.BINGBINGBING.get(), 1);
+        // 1.20.1: ItemStack#enchant applies the enchantment onto the item's NBT.
+        book.enchant(ModEnchantments.BINGBINGBING.get(), 1);
         book.getOrCreateTag().putInt("CustomModelData", TEXTURE_ID);
         return book;
     }
 
     @Override
-    public boolean matches(Inventory inv, Level level) {
+    public boolean matches(CraftingContainer inv, Level level) {
         for (int i = 0; i < inv.getContainerSize(); i++) {
             if (!ingredients.get(i).test(inv.getItem(i))) {
                 return false;
@@ -51,7 +52,7 @@ public class BingbingbingBookRecipe extends CustomRecipe {
     }
 
     @Override
-    public ItemStack assemble(Inventory inv, RegistryAccess access) {
+    public ItemStack assemble(CraftingContainer inv, RegistryAccess access) {
         return createBook();
     }
 
@@ -63,5 +64,10 @@ public class BingbingbingBookRecipe extends CustomRecipe {
     @Override
     public NonNullList<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    @Override
+    public RecipeSerializer<?> getSerializer() {
+        return ModRecipes.BINGBINGBING_BOOK.get();
     }
 }
