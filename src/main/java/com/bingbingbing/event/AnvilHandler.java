@@ -24,11 +24,8 @@ public class AnvilHandler {
         if (left.isEmpty() || right.isEmpty()) {
             return;
         }
-        // Accept our custom enchanted book: vanilla enchanted_book with CustomModelData 1 + our enchant.
-        if (!right.is(net.minecraft.world.item.Items.ENCHANTED_BOOK)) {
-            return;
-        }
-        if (right.getOrCreateTag().getInt("CustomModelData") != com.bingbingbing.recipe.BingbingbingBookRecipe.TEXTURE_ID) {
+        // Accept our custom bingbingbing book.
+        if (!right.is(com.bingbingbing.registry.ModItems.BINGBINGBING_BOOK.get())) {
             return;
         }
         // Only tools/weapons/armor (matches the enchantment category), and don't re-apply.

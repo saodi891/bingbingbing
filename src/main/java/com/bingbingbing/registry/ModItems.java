@@ -1,19 +1,18 @@
 package com.bingbingbing.registry;
 
 import com.bingbingbing.Bingbingbing;
-import com.bingbingbing.recipe.BingbingbingBookRecipe;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import com.bingbingbing.item.BingbingbingBookItem;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
-    /**
-     * The bingbingbing book: a vanilla enchanted_book pre-enchanted with bingbingbing,
-     * tagged with CustomModelData so it renders with its own texture.
-     */
-    public static ItemStack bingbingbingBookStack() {
-        ItemStack book = new ItemStack(Items.ENCHANTED_BOOK);
-        book.enchant(ModEnchantments.BINGBINGBING.get(), 1);
-        book.getOrCreateTag().putInt("CustomModelData", BingbingbingBookRecipe.TEXTURE_ID);
-        return book;
-    }
+    public static final DeferredRegister<Item> ITEMS =
+            DeferredRegister.create(ForgeRegistries.ITEMS, Bingbingbing.MODID);
+
+    /** The bingbingbing book: a bingbingbing-namespace item with its own texture, used to apply the enchant via anvil. */
+    public static final RegistryObject<Item> BINGBINGBING_BOOK =
+            ITEMS.register("bingbingbing_book",
+                    () -> new BingbingbingBookItem(new Item.Properties().stacksTo(16)));
 }
