@@ -50,19 +50,22 @@ public class ClientSoundHandler {
             return;
         }
 
-        // NEW: 1s cooldown gate
-        long now = System.nanoTime();
-        if (now - lastToolSound < 1_000_000_000L) {
-            return;
-        }
-        lastToolSound = now;
-
         // Only replace sounds happening close to the player (the ones they likely caused).
         double dx = sound.getX() - player.getX();
         double dy = sound.getY() - player.getY();
         double dz = sound.getZ() - player.getZ();
         if (dx * dx + dy * dy + dz * dz > 36.0) {
             return;
+        }
+
+        // 0.4s cooldown, timed from when a bingbingbing sound actually starts playing.
+        // Only tools (axe/pickaxe/shovel/hoe = DiggerItem) are rate-limited; other sounds replace freely.
+        if (player.getMainHandItem().getItem() instanceof net.minecraft.world.item.DiggerItem) {
+            long now = System.nanoTime();
+            if (now - lastToolSound < 400_000_000L) {
+                return;
+            }
+            lastToolSound = now;
         }
 
         RandomSource random = player.level().getRandom();
