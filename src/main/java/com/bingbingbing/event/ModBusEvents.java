@@ -13,7 +13,7 @@ public class ModBusEvents {
 
     @SubscribeEvent
     public static void addToCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.bingbingbingBookStack());
         }
     }
