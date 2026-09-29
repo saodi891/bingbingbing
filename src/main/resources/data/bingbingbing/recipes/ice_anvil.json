@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "BBB",
+        " P ",
+        "PPP"
+    ],
+    "key": {
+        "B": { "item": "minecraft:blue_ice" },
+        "P": { "item": "minecraft:packed_ice" }
+    },
+    "result": { "item": "bingbingbing:ice_anvil" }
+}

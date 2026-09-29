@@ -1,5 +1,9 @@
 {
     "item.bingbingbing.bingbingbing_book": "Enchanted Book",
+    "block.bingbingbing.ice_anvil": "Ice Anvil",
+    "container.bingbingbing.ice_anvil": "Ice Anvil",
     "enchantment.bingbingbing.bingbingbing": "Bingbingbing",
-    "subtitles.bingbingbing.bingbingbing": "Bingbingbing"
+    "subtitles.bingbingbing.bingbingbing": "Bingbingbing",
+    "subtitles.bingbingbing.bing": "Ice Maker",
+    "subtitles.bingbingbing.ice_anvil_use": "Ice Anvil used"
 }

@@ -1,5 +1,9 @@
 {
     "item.bingbingbing.bingbingbing_book": "附魔书",
+    "block.bingbingbing.ice_anvil": "冰砧",
+    "container.bingbingbing.ice_anvil": "冰砧",
     "enchantment.bingbingbing.bingbingbing": "冰冰冰",
-    "subtitles.bingbingbing.bingbingbing": "冰冰冰"
+    "subtitles.bingbingbing.bingbingbing": "冰冰冰",
+    "subtitles.bingbingbing.bing": "制冰机",
+    "subtitles.bingbingbing.ice_anvil_use": "冰砧使用"
 }

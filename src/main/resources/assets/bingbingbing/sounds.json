@@ -4,5 +4,17 @@
         "sounds": [
             "bingbingbing:bingbingbing"
         ]
+    },
+    "ice_anvil_use": {
+        "subtitle": "subtitles.bingbingbing.ice_anvil_use",
+        "sounds": [
+            "bingbingbing:ice_anvil_use"
+        ]
+    },
+    "bing": {
+        "subtitle": "subtitles.bingbingbing.bing",
+        "sounds": [
+            "bingbingbing:bing"
+        ]
     }
 }

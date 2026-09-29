@@ -1,0 +1,8 @@
+{
+    "parent": "minecraft:block/template_anvil",
+    "textures": {
+        "particle": "bingbingbing:block/ice_anvil_base",
+        "body": "bingbingbing:block/ice_anvil_base",
+        "top": "bingbingbing:block/ice_anvil_top"
+    }
+}

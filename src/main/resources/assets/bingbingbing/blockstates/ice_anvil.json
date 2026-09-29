@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "bingbingbing:block/ice_anvil" },
+        "facing=east": { "model": "bingbingbing:block/ice_anvil", "y": 90 },
+        "facing=south": { "model": "bingbingbing:block/ice_anvil", "y": 180 },
+        "facing=west": { "model": "bingbingbing:block/ice_anvil", "y": 270 }
+    }
+}

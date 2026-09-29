@@ -36,6 +36,9 @@ public class ModBusEvents {
             }
             event.accept(ModItems.BINGBINGBING_BOOK.get());
         }
+        if (event.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(ModItems.ICE_ANVIL.get());
+        }
     }
 
     private static boolean isBingbingbingBook(ItemStack stack) {

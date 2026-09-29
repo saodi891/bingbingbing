@@ -4,6 +4,7 @@ import com.bingbingbing.Bingbingbing;
 import com.bingbingbing.registry.ModEnchantments;
 import com.bingbingbing.util.ModEnchantHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,6 +13,8 @@ import net.minecraftforge.fml.common.Mod;
  * Applies the bingbingbing enchantment through the anvil with:
  *  - no experience/level cost (setCost(0)),
  *  - no "prior work" penalty (the output keeps the input's repair cost untouched).
+ *
+ * Also enforces that bingbingbing can never be merged into a composite enchanted book.
  */
 @Mod.EventBusSubscriber(modid = Bingbingbing.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class AnvilHandler {
@@ -22,6 +25,12 @@ public class AnvilHandler {
         ItemStack right = event.getRight();
 
         if (left.isEmpty() || right.isEmpty()) {
+            return;
+        }
+        // Never let bingbingbing combine with another enchanted book into a composite book.
+        if (left.is(Items.ENCHANTED_BOOK) && right.is(Items.ENCHANTED_BOOK)
+                && (ModEnchantHelper.hasEnchant(left) || ModEnchantHelper.hasEnchant(right))) {
+            event.setCanceled(true);
             return;
         }
         // Accept our custom bingbingbing book.
