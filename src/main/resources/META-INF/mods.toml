@@ -1,0 +1,28 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="bingbingbing"
+version="1.0.0"
+displayName="Bingbingbing"
+description='''
+Craft a special enchanted book from Blue Ice + Packed Ice + Ice, then apply the "Bingbingbing" enchantment to tools, weapons and armor with no anvil cost or penalty. Enchanted gear replaces its sound effects with bingbingbing.ogg.
+'''
+
+[[mixins]]
+config="bingbingbing.mixins.json"
+
+[[dependencies.bingbingbing]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.bingbingbing]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.20.2)"
+    ordering="NONE"
+    side="BOTH"

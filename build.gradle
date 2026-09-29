@@ -1,0 +1,81 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
+}
+
+version = '1.0.0'
+group = 'com.bingbingbing'
+
+base {
+    archivesName = 'bingbingbing'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+// Mixin (for the "true sound replacement" features)
+mixin {
+    add sourceSets.main, 'bingbingbing.refmap.json'
+    config 'bingbingbing.mixins.json'
+}
+
+minecraft {
+    // 1.20.1 uses the official Mojang mappings; method names in the mixins match this channel.
+    mappings channel: 'official', version: '1.20.1'
+
+    copyIdeResources = true
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            mods {
+                bingbingbing {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
+            mods {
+                bingbingbing {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'     : 'bingbingbing',
+            'Specification-Vendor'    : 'bingbingbing',
+            'Specification-Version'   : '1',
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.jar.archiveVersion,
+            'Implementation-Vendor'   : 'bingbingbing',
+            'MixinConfigs'            : 'bingbingbing.mixins.json'
+        ])
+    }
+}
+// ForgeGradle wires reobfJar automatically; do not finalize it manually.

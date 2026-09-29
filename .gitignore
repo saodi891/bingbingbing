@@ -1,0 +1,22 @@
+# Gradle / IDE / build output
+.gradle/
+build/
+.idea/
+*.iml
+out/
+run/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 美术资源：不随源码上传（音效 + 贴图）
+# 音频
+*.ogg
+*.wav
+# 贴图（PNG 等图像资产，保留占位说明 txt）
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp

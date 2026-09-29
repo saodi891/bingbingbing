@@ -1,0 +1,8 @@
+{
+    "type": "bingbingbing:bingbingbing_book",
+    "ingredients": [
+        { "item": "minecraft:blue_ice" },
+        { "item": "minecraft:packed_ice" },
+        { "item": "minecraft:ice" }
+    ]
+}
